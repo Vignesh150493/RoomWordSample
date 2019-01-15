@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def config = rootProject.extensions.getByName("ext") // Create variable to access "ext"
 android {
     compileSdkVersion 28
@@ -44,16 +46,17 @@ dependencies {
     implementation config.commonDependency.designSupportLib
     implementation config.commonDependency.constraintLayout
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation config.commonDependency.jUnit
     androidTestImplementation config.commonDependency.testRunner
     androidTestImplementation config.commonDependency.espressoCore
 
     // Room components
     implementation config.commonDependency.roomImpl
-    annotationProcessor config.commonDependency.roomAnnotationProcessor
+    kapt config.commonDependency.roomAnnotationProcessor
     androidTestImplementation config.commonDependency.roomAndroidTestImpl
 
     // Lifecycle components
     implementation config.commonDependency.archLifecycleImpl
-    annotationProcessor config.commonDependency.archLifecycleAnnotationProcessor
+    kapt config.commonDependency.archLifecycleAnnotationProcessor
 }
